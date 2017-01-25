@@ -17,6 +17,17 @@ namespace COMP442_Assignment1.Lexical
             _defaultState = defaultState;
         }
 
+        public SimpleIntermediateState(IState defaultState)
+        {
+            _transitions = new Dictionary<ICharacterMatch, IState>();
+            _defaultState = defaultState;
+        }
+
+        public void addTransition(ICharacterMatch match, IState state)
+        {
+            _transitions.Add(match, state);
+        }
+
         public IState getNextState(char character)
         {
             KeyValuePair<ICharacterMatch, IState>? nextStatePair = _transitions.FirstOrDefault(x => x.Key.doesCharacterMatch(character));

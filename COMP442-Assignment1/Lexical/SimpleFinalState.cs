@@ -17,6 +17,11 @@ namespace COMP442_Assignment1.Lexical
             this._tokenName = tokenName;
         }
 
+        public void addTransition(ICharacterMatch match, IState state)
+        {
+            throw new NotImplementedException();
+        }
+
         public bool backTrack()
         {
             return _backTrack;

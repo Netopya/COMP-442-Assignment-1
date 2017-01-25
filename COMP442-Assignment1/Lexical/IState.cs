@@ -9,5 +9,6 @@ namespace COMP442_Assignment1.Lexical
     interface IState
     {
         IState getNextState(char character);
+        void addTransition(ICharacterMatch match, IState state);
     }
 }
