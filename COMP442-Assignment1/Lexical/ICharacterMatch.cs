@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace COMP442_Assignment1.Lexical
 {
-    interface IState
+    interface ICharacterMatch
     {
-        IState getNextState(char character);
+        bool doesCharacterMatch(char character);
     }
 }
