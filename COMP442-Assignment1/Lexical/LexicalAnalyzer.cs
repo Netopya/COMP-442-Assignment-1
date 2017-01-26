@@ -21,17 +21,27 @@ namespace COMP442_Assignment1.Lexical
             ICharacterMatch slash = new SimpleCharacterMatch('/');
             ICharacterMatch greaterThan = new SimpleCharacterMatch('>');
             ICharacterMatch lessThan = new SimpleCharacterMatch('<');
-            
+
             IState err = new SimpleFinalState(false, "Error");
 
             IState s42 = new SimpleFinalState(false, "Asterisk");
+
             IState s41 = new SimpleFinalState(false, "Line comment");
-            IState s40; // END OF LINE TRANSITION;
+            IState s43 = new SimpleIntermediateState(new Dictionary<ICharacterMatch, IState>() { { new SimpleCharacterMatch((char)10), s41} }, err);
+
+            IState s40 = new SimpleIntermediateState();
+            s40.addTransition(new SimpleCharacterMatch((char)13), s43);
+
+            
+
             IState s39 = new SimpleFinalState(false, "Block comment");
-            IState s38; // END OF FILE TRANSITION;
-            IState s37; // END OF FILE TRANSITION;
+            IState s37 = new SimpleIntermediateState();
+            IState s38 = new SimpleIntermediateState(new Dictionary<ICharacterMatch, IState>() { { slash, s39 } }, s37);
+
+            s37.addTransition(asterisk, s38);
+
             IState s36 = new SimpleFinalState(true, "Slash");
-            // IState s35 = new SimpleIntermediateState(new Dictionary<ICharacterMatch, IState>() { { asterisk, s37 }, { slash, s40 } }, s36);
+            IState s35 = new SimpleIntermediateState(new Dictionary<ICharacterMatch, IState>() { { asterisk, s37 }, { slash, s40 } }, s36);
 
             // Brackets
             IState s29 = new SimpleFinalState(false, "Open parenthesis");

@@ -16,5 +16,16 @@ namespace COMP442_Assignment1
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var code = textBox1.Text;
+
+            foreach(char character in code)
+            {
+                Console.WriteLine(character);
+            }
+
+        }
     }
 }

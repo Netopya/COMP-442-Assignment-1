@@ -23,6 +23,12 @@ namespace COMP442_Assignment1.Lexical
             _defaultState = defaultState;
         }
 
+        public SimpleIntermediateState()
+        {
+            _transitions = new Dictionary<ICharacterMatch, IState>();
+            _defaultState = this;
+        }
+
         public void addTransition(ICharacterMatch match, IState state)
         {
             _transitions.Add(match, state);
