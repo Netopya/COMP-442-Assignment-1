@@ -31,7 +31,7 @@ namespace COMP442_Assignment1.Lexical
             IState s38; // END OF FILE TRANSITION;
             IState s37; // END OF FILE TRANSITION;
             IState s36 = new SimpleFinalState(true, "Slash");
-            IState s35 = new SimpleIntermediateState(new Dictionary<ICharacterMatch, IState>() { { asterisk, s37 }, { slash, s40 } }, s36);
+            // IState s35 = new SimpleIntermediateState(new Dictionary<ICharacterMatch, IState>() { { asterisk, s37 }, { slash, s40 } }, s36);
 
             // Brackets
             IState s29 = new SimpleFinalState(false, "Open parenthesis");
@@ -110,7 +110,7 @@ namespace COMP442_Assignment1.Lexical
                 {new SimpleCharacterMatch('}'), s32 },
                 {new SimpleCharacterMatch('['), s33 },
                 {new SimpleCharacterMatch(']'), s34 },
-                {slash, s35 },
+                // {slash, s35 },
                 {asterisk, s42 }
             }, err);
 
