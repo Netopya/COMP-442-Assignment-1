@@ -10,7 +10,7 @@ namespace COMP442_Assignment1.Lexical
     {
         IState root;
 
-        HashSet<string> ReservedWords = new HashSet<string> { "and", "not", "or", "if", "then", "else", "for", "class", "int", "float", "get", "put", "return", "program" };
+        
 
         public LexicalAnalyzer()
         {
@@ -26,11 +26,11 @@ namespace COMP442_Assignment1.Lexical
             ICharacterMatch greaterThan = new SimpleCharacterMatch('>');
             ICharacterMatch lessThan = new SimpleCharacterMatch('<');
 
-            IState err = new SimpleFinalState(false, "Error");           
+            IState err = new SimpleFinalState(false, "Error", true);
 
-            IState s42 = new SimpleFinalState(false, "Asterisk");
+            IState s42 = new SimpleFinalState(false, "Asterisk", false);
 
-            IState s41 = new SimpleFinalState(false, "Line comment");
+            IState s41 = new SimpleFinalState(false, "Line comment", false);
             IState s43 = new SimpleIntermediateState(new Dictionary<ICharacterMatch, IState>() { { new SimpleCharacterMatch((char)10), s41} }, err);
 
             IState s40 = new SimpleIntermediateState();
@@ -38,44 +38,44 @@ namespace COMP442_Assignment1.Lexical
 
             
 
-            IState s39 = new SimpleFinalState(false, "Block comment");
+            IState s39 = new SimpleFinalState(false, "Block comment", false);
             IState s37 = new SimpleIntermediateState();
             IState s38 = new SimpleIntermediateState(new Dictionary<ICharacterMatch, IState>() { { slash, s39 } }, s37);
 
             s37.addTransition(asterisk, s38);
 
-            IState s36 = new SimpleFinalState(true, "Slash");
+            IState s36 = new SimpleFinalState(true, "Slash", false);
             IState s35 = new SimpleIntermediateState(new Dictionary<ICharacterMatch, IState>() { { asterisk, s37 }, { slash, s40 } }, s36);
 
             // Brackets
-            IState s29 = new SimpleFinalState(false, "Open parenthesis");
-            IState s30 = new SimpleFinalState(false, "Close parenthesis");
-            IState s31 = new SimpleFinalState(false, "Open curly bracket ");
-            IState s32 = new SimpleFinalState(false, "Close curly bracket");
-            IState s33 = new SimpleFinalState(false, "Open square bracket");
-            IState s34 = new SimpleFinalState(false, "Close square bracket");
+            IState s29 = new SimpleFinalState(false, "Open parenthesis", false);
+            IState s30 = new SimpleFinalState(false, "Close parenthesis", false);
+            IState s31 = new SimpleFinalState(false, "Open curly bracket ", false);
+            IState s32 = new SimpleFinalState(false, "Close curly bracket", false);
+            IState s33 = new SimpleFinalState(false, "Open square bracket", false);
+            IState s34 = new SimpleFinalState(false, "Close square bracket", false);
 
             // Equality, greater than or equal signs
-            IState s28 = new SimpleFinalState(false, "Greater than or equal");
-            IState s27 = new SimpleFinalState(true, "Greater than");
+            IState s28 = new SimpleFinalState(false, "Greater than or equal", false);
+            IState s27 = new SimpleFinalState(true, "Greater than", false);
             IState s26 = new SimpleIntermediateState(new Dictionary<ICharacterMatch, IState>() { { equals, s28 } }, s27);
-            IState s25 = new SimpleFinalState(false, "Less than or equal");
-            IState s24 = new SimpleFinalState(false, "Not equal");
-            IState s23 = new SimpleFinalState(true, "Less than");
+            IState s25 = new SimpleFinalState(false, "Less than or equal", false);
+            IState s24 = new SimpleFinalState(false, "Not equal", false);
+            IState s23 = new SimpleFinalState(true, "Less than", false);
             IState s22 = new SimpleIntermediateState(new Dictionary<ICharacterMatch, IState>() { { greaterThan, s24 }, { equals, s25} }, s23);
-            IState s21 = new SimpleFinalState(false, "Double equals");
-            IState s20 = new SimpleFinalState(true, "Equals");
+            IState s21 = new SimpleFinalState(false, "Double equals", false);
+            IState s20 = new SimpleFinalState(true, "Equals", false);
             IState s19 = new SimpleIntermediateState(new Dictionary<ICharacterMatch, IState>() { { equals, s21 } }, s20);
 
-            IState s14 = new SimpleFinalState(false, "Period");
-            IState s15 = new SimpleFinalState(false, "Semi-colon");
-            IState s16 = new SimpleFinalState(false, "Comma");
-            IState s17 = new SimpleFinalState(false, "Plus");
-            IState s18 = new SimpleFinalState(false, "Minus");
+            IState s14 = new SimpleFinalState(false, "Period", false);
+            IState s15 = new SimpleFinalState(false, "Semi-colon", false);
+            IState s16 = new SimpleFinalState(false, "Comma", false);
+            IState s17 = new SimpleFinalState(false, "Plus", false);
+            IState s18 = new SimpleFinalState(false, "Minus", false);
 
             // Numbers
-            IState s12 = new SimpleFinalState(true, "Float (non-zero)");
-            IState s11 = new SimpleFinalState(true, "Float (zero)");
+            IState s12 = new SimpleFinalState(true, "Float (non-zero)", true);
+            IState s11 = new SimpleFinalState(true, "Float (zero)", true);
             IState s13 = new SimpleIntermediateState(err);
             IState s10 = new SimpleIntermediateState(s12);
             IState s9 = new SimpleIntermediateState(s11);
@@ -90,8 +90,8 @@ namespace COMP442_Assignment1.Lexical
             s8.addTransition(zero, s9);
             s8.addTransition(nonZero, s10);
 
-            IState s7 = new SimpleFinalState(true, "Integer (non-zero)");
-            IState s5 = new SimpleFinalState(true, "Integer (zero)");
+            IState s7 = new SimpleFinalState(true, "Integer (non-zero)", true);
+            IState s5 = new SimpleFinalState(true, "Integer (zero)", true);
             IState s6 = new SimpleIntermediateState(s7);
             s6.addTransition(digit, s6);
             s6.addTransition(period, s8);
@@ -99,7 +99,7 @@ namespace COMP442_Assignment1.Lexical
             IState s4 = new SimpleIntermediateState(new Dictionary<ICharacterMatch, IState>() { { period, s8 } }, s5);
 
             // Identifiers
-            IState s3 = new SimpleFinalState(true, "Identifier");
+            IState s3 = new SimpleFinalState(true, "Identifier", true);
             IState s2 = new SimpleIntermediateState(s3);
             s2.addTransition(letters, s2);
             s2.addTransition(digit, s2);
@@ -133,26 +133,30 @@ namespace COMP442_Assignment1.Lexical
             root = s1;
         }
 
-        public List<string> Tokenize(string input)
+        public List<IToken> Tokenize(string input)
         {
             input += System.Environment.NewLine;
 
-            List <string> tokens = new List<string>();
+            List <IToken> tokens = new List<IToken>();
             IState state = root;
             int count = 0;
             int tokenStart = 0;
+            int line = 1;
 
             while(count < input.Length)
             {
                 char character = input[count];
                 state = state.getNextState(character);
 
+
                 if (state.isFinalState())
                 {
                     bool backtrack = state.backTrack();
                     string content = input.Substring(tokenStart, count - tokenStart + (backtrack ? 0 : 1)).Trim();
+                    IToken token = state.token();
+                    token.setInfo(content, line);
 
-                    tokens.Add("<" + CheckIdentifier(state, content) + " (" + content + ")>");
+                    tokens.Add(token);
 
                     state = root;
 
@@ -163,6 +167,11 @@ namespace COMP442_Assignment1.Lexical
                     }                    
 
                     tokenStart = count + 1;
+                }
+
+                if (character == (char)10)
+                {
+                    line++;
                 }
 
                 count++;
@@ -210,16 +219,6 @@ namespace COMP442_Assignment1.Lexical
             }
 
             return digits;
-        }
-
-        private string CheckIdentifier(IState state, string token)
-        {
-            if(state.tokenName() == "Identifier" && ReservedWords.Contains(token))
-            {
-                return token;
-            }
-
-            return state.tokenName();
         }
     }
 

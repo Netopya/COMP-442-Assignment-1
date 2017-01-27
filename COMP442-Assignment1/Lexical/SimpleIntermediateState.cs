@@ -54,7 +54,7 @@ namespace COMP442_Assignment1.Lexical
             throw new NotImplementedException();
         }
 
-        public string tokenName()
+        public IToken token()
         {
             throw new NotImplementedException();
         }

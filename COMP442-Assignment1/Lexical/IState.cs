@@ -12,6 +12,6 @@ namespace COMP442_Assignment1.Lexical
         void addTransition(ICharacterMatch match, IState state);
         bool isFinalState();
         bool backTrack();
-        string tokenName();
+        IToken token();
     }
 }

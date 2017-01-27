@@ -10,17 +10,20 @@ namespace COMP442_Assignment1.Lexical
     {
         private bool _backTrack;
         private string _tokenName;
+        private bool _tokenShowContent;
 
-        public SimpleFinalState(bool backTrack, string tokenName)
+        public SimpleFinalState(bool backTrack, string tokenName, bool tokenShowContent)
         {
             this._backTrack = backTrack;
             this._tokenName = tokenName;
+            _tokenShowContent = tokenShowContent;
         }
 
         public SimpleFinalState(string tokenName)
         {
             _backTrack = false;
             this._tokenName = tokenName;
+            _tokenShowContent = false;
         }
 
         public void addTransition(ICharacterMatch match, IState state)
@@ -43,9 +46,16 @@ namespace COMP442_Assignment1.Lexical
             return true;
         }
 
-        public string tokenName()
+        public IToken token()
         {
-            return _tokenName;
+            if(_tokenName == "Identifier")
+            {
+                return new IndentifierToken();
+            }
+            else
+            {
+                return new SimpleToken(_tokenName, _tokenShowContent);
+            }
         }
     }
 }
