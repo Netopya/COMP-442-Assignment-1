@@ -150,8 +150,9 @@ namespace COMP442_Assignment1.Lexical
                 if (state.isFinalState())
                 {
                     bool backtrack = state.backTrack();
+                    string content = input.Substring(tokenStart, count - tokenStart + (backtrack ? 0 : 1)).Trim();
 
-                    tokens.Add(CheckIdentifier(state, input.Substring(tokenStart, count - tokenStart + (backtrack ? 0 : 1))));
+                    tokens.Add("<" + CheckIdentifier(state, content) + " (" + content + ")>");
 
                     state = root;
 
