@@ -58,10 +58,5 @@ namespace COMP442_Assignment1.Lexical
         {
             throw new NotImplementedException();
         }
-
-        public void setRootState(IState state)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

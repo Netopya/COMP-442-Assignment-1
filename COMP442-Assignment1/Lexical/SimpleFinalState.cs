@@ -10,13 +10,11 @@ namespace COMP442_Assignment1.Lexical
     {
         private bool _backTrack;
         private string _tokenName;
-        private IState _root;
 
-        public SimpleFinalState(bool backTrack, string tokenName, IState root)
+        public SimpleFinalState(bool backTrack, string tokenName)
         {
             this._backTrack = backTrack;
             this._tokenName = tokenName;
-            _root = root;
         }
 
         public SimpleFinalState(string tokenName)
@@ -37,7 +35,7 @@ namespace COMP442_Assignment1.Lexical
 
         public IState getNextState(char character)
         {
-            return _root;
+            return null;
         }
 
         public bool isFinalState()
@@ -48,11 +46,6 @@ namespace COMP442_Assignment1.Lexical
         public string tokenName()
         {
             return _tokenName;
-        }
-
-        public void setRootState(IState state)
-        {
-            _root = state;
         }
     }
 }

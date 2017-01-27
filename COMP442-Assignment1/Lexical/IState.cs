@@ -13,6 +13,5 @@ namespace COMP442_Assignment1.Lexical
         bool isFinalState();
         bool backTrack();
         string tokenName();
-        void setRootState(IState state);
     }
 }
