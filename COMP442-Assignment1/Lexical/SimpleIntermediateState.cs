@@ -38,10 +38,30 @@ namespace COMP442_Assignment1.Lexical
         {
             KeyValuePair<ICharacterMatch, IState>? nextStatePair = _transitions.FirstOrDefault(x => x.Key.doesCharacterMatch(character));
 
-            if (nextStatePair.HasValue)
+            if (nextStatePair.Value.Value != null)
                 return nextStatePair.Value.Value;
             else
                 return _defaultState;
+        }
+
+        public bool isFinalState()
+        {
+            return false;
+        }
+
+        public bool backTrack()
+        {
+            throw new NotImplementedException();
+        }
+
+        public string tokenName()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void setRootState(IState state)
+        {
+            throw new NotImplementedException();
         }
     }
 }

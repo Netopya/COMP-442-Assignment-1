@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using COMP442_Assignment1.Lexical;
 
 namespace COMP442_Assignment1
 {
@@ -19,12 +20,13 @@ namespace COMP442_Assignment1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            LexicalAnalyzer analyzer = new LexicalAnalyzer();
+
             var code = textBox1.Text;
 
-            foreach(char character in code)
-            {
-                Console.WriteLine(character);
-            }
+            var tokens = analyzer.Tokenize(code);
+
+            textBox2.Text = string.Join(" ", tokens.ToArray());
 
         }
     }

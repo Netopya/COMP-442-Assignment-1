@@ -10,5 +10,9 @@ namespace COMP442_Assignment1.Lexical
     {
         IState getNextState(char character);
         void addTransition(ICharacterMatch match, IState state);
+        bool isFinalState();
+        bool backTrack();
+        string tokenName();
+        void setRootState(IState state);
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace COMP442_Assignment1.Lexical
 {
-    interface IFinalState
+    /*interface IFinalState
     {
         bool backTrack();
         string tokenName();
-    }
+    }*/
 }
