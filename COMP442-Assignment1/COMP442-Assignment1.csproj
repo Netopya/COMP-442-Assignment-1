@@ -52,6 +52,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Lexical\ErrorToken.cs" />
     <Compile Include="Lexical\ICharacterMatch.cs" />
     <Compile Include="Lexical\IFinalState.cs" />
     <Compile Include="Lexical\IndentifierState.cs" />

@@ -52,6 +52,10 @@ namespace COMP442_Assignment1.Lexical
             {
                 return new IndentifierToken();
             }
+            else if(_tokenName == "Error")
+            {
+                return new ErrorToken();
+            }
             else
             {
                 return new SimpleToken(_tokenName, _tokenShowContent);

@@ -26,7 +26,8 @@ namespace COMP442_Assignment1
 
             var tokens = analyzer.Tokenize(code);
 
-            textBox2.Text = string.Join(" ", tokens.Select(x => x.getName()).ToArray());
+            textBox2.Text = string.Join(System.Environment.NewLine, tokens.Where(x => !x.isError()).Select(x => x.getName()).ToArray());
+            textBox3.Text = string.Join(System.Environment.NewLine, tokens.Where(x => x.isError()).Select(x => x.getName()).ToArray());
 
         }
     }

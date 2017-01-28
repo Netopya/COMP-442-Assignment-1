@@ -10,5 +10,6 @@ namespace COMP442_Assignment1.Lexical
     {
         string getName();
         void setInfo(string content, int line);
+        bool isError();
     }
 }

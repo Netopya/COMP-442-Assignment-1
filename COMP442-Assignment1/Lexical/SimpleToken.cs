@@ -36,5 +36,10 @@ namespace COMP442_Assignment1.Lexical
             _content = content;
             _line = line;
         }
+
+        public virtual bool isError()
+        {
+            return false;
+        }
     }
 }
