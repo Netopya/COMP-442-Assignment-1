@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace COMP442_Assignment1.Lexical
 {
-    class LexicalAnalyzer
+    public class LexicalAnalyzer
     {
         IState root;
 
