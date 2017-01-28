@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace COMP442_Assignment1.Lexical
 {
-    interface IToken
+    public interface IToken
     {
         string getName();
         void setInfo(string content, int line);

@@ -50,7 +50,7 @@ namespace COMP442_Assignment1.Lexical
             // Brackets
             IState s29 = new SimpleFinalState(false, "Open parenthesis", false);
             IState s30 = new SimpleFinalState(false, "Close parenthesis", false);
-            IState s31 = new SimpleFinalState(false, "Open curly bracket ", false);
+            IState s31 = new SimpleFinalState(false, "Open curly bracket", false);
             IState s32 = new SimpleFinalState(false, "Close curly bracket", false);
             IState s33 = new SimpleFinalState(false, "Open square bracket", false);
             IState s34 = new SimpleFinalState(false, "Close square bracket", false);
