@@ -6,14 +6,22 @@ using System.Threading.Tasks;
 
 namespace COMP442_Assignment1.Lexical
 {
+    /*
+        The lexical analyzer works by using IState classes as
+        nodes to recreate a DFA as shown in the report for this
+        assignment. Numbered variables refered to the numbered nodes
+        of this DFA
+
+        For COMP 442 Assignment 1, Michael Bilinsky 26992358
+    */
     public class LexicalAnalyzer
     {
-        IState root;
-
-        
+        // The root node of the DFA
+        IState root;        
 
         public LexicalAnalyzer()
         {
+            // Initialize matches that will be reused here
             ICharacterMatch letters = new ListCharacterMatch(generateLetters());
             ICharacterMatch nonZero = new ListCharacterMatch(generateNonZeroes());
             ICharacterMatch digit = new ListCharacterMatch(generateDigits());
@@ -26,8 +34,10 @@ namespace COMP442_Assignment1.Lexical
             ICharacterMatch greaterThan = new SimpleCharacterMatch('>');
             ICharacterMatch lessThan = new SimpleCharacterMatch('<');
 
+            // The error state:
             IState err = new SimpleFinalState(false, "Error", true);
 
+            // Setup comment nodes
             IState s42 = new SimpleFinalState(false, "Asterisk", false);
 
             IState s41 = new SimpleFinalState(false, "Line comment", false);
@@ -67,6 +77,7 @@ namespace COMP442_Assignment1.Lexical
             IState s20 = new SimpleFinalState(true, "Equals", false);
             IState s19 = new SimpleIntermediateState(new Dictionary<ICharacterMatch, IState>() { { equals, s21 } }, s20);
 
+            // Operators
             IState s14 = new SimpleFinalState(false, "Period", false);
             IState s15 = new SimpleFinalState(false, "Semi-colon", false);
             IState s16 = new SimpleFinalState(false, "Comma", false);
@@ -133,8 +144,10 @@ namespace COMP442_Assignment1.Lexical
             root = s1;
         }
 
+        // Tokenize an input
         public List<IToken> Tokenize(string input)
         {
+            // Ensure that the input ends with a new line
             input += System.Environment.NewLine;
 
             List <IToken> tokens = new List<IToken>();
@@ -146,8 +159,9 @@ namespace COMP442_Assignment1.Lexical
             while(count < input.Length)
             {
                 char character = input[count];
-                state = state.getNextState(character);
 
+                // Get the next state for the given character
+                state = state.getNextState(character);
 
                 if (state.isFinalState())
                 {
@@ -160,6 +174,7 @@ namespace COMP442_Assignment1.Lexical
 
                     state = root;
 
+                    // If we need to backtrack, don't increment the counter
                     if (backtrack)
                     {
                         tokenStart = count;
@@ -169,6 +184,7 @@ namespace COMP442_Assignment1.Lexical
                     tokenStart = count + 1;
                 }
 
+                // Count new lines
                 if (character == (char)10)
                 {
                     line++;
@@ -180,6 +196,7 @@ namespace COMP442_Assignment1.Lexical
             return tokens;
         }
 
+        // Generate a list of letters
         private List<char> generateLetters()
         {
             List<char> letters = new List<char>();
@@ -197,6 +214,7 @@ namespace COMP442_Assignment1.Lexical
             return letters;
         }
 
+        // Generate a list of non-zero numbers
         private List<char> generateNonZeroes()
         {
             List<char> digits = new List<char>();
@@ -209,6 +227,7 @@ namespace COMP442_Assignment1.Lexical
             return digits;
         }
 
+        // Generate a list of numbers including zero
         private List<char> generateDigits()
         {
             List<char> digits = new List<char>();

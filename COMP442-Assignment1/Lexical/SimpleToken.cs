@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace COMP442_Assignment1.Lexical
 {
+    /*
+        A generic token class to hold a
+        token's name,  line number, and lexeme
+    */
     class SimpleToken : IToken
     {
         protected string _name;
@@ -19,6 +23,8 @@ namespace COMP442_Assignment1.Lexical
             _showContent = showContent;
         }
 
+        // Create a human readable string for this token, with
+        // the lexeme if appropriate
         public string getName()
         {
             if(_showContent)

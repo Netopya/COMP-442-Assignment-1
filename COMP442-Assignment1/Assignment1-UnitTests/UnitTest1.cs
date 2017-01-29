@@ -4,6 +4,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Assignment1_UnitTests
 {
+    /*
+        A set of unit tests to test the lexical analyzer
+
+        For COMP 442 Assignment 1, Michael Bilinsky 26992358
+    */
     [TestClass]
     public class UnitTest1
     {

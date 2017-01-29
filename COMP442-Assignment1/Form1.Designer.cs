@@ -149,7 +149,7 @@
             this.ClientSize = new System.Drawing.Size(827, 416);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "COMP 442 Assignment 1 - Michael Bilinsky 26992358";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace COMP442_Assignment1.Lexical
 {
+    /*
+        A single node in the DFA that is a final state
+    */
     class SimpleFinalState : IState
     {
         private bool _backTrack;
@@ -26,6 +29,7 @@ namespace COMP442_Assignment1.Lexical
             _tokenShowContent = false;
         }
 
+        // Cannot add transitions to a final state
         public void addTransition(ICharacterMatch match, IState state)
         {
             throw new NotImplementedException();
@@ -36,6 +40,7 @@ namespace COMP442_Assignment1.Lexical
             return _backTrack;
         }
 
+        // Null means to return to the root
         public IState getNextState(char character)
         {
             return null;
@@ -46,6 +51,8 @@ namespace COMP442_Assignment1.Lexical
             return true;
         }
 
+        // Generate a new token for the name
+        // given to this final state
         public IToken token()
         {
             if(_tokenName == "Identifier")
